@@ -29,6 +29,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   name: 'UrlShortneer',
   data() {
@@ -49,7 +50,8 @@ export default {
 
       console.log(this.url)
     },
-    async postUrl() {
+    async postUrl(e) {
+      e.preventDefault()
       console.log(this.url)
       const dataJson = JSON.stringify(this.url)
       console.log(dataJson)

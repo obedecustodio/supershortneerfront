@@ -21,13 +21,12 @@
           <a :href=" url.longurl" class="text-primary" target="_blank">{{ url.longurl }}</a>
         </td>
         <td>
-          <a :href="'https://su-jffu.onrender.com/url/' + url.shorturl" class="text-success" target="_blank">{{ url.shorturl }}</a>
+          <a :href="'https://supershortneerbackend.vercel.app/url/' + url.shorturl" class="text-success" target="_blank">{{ url.shorturl }}</a>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
-  <!-- <p>{{ url.long }}</p> -->
 </template>
 <script>
 export default {
@@ -42,7 +41,7 @@ export default {
   },
   methods: {
     async getUrls() {
-      const req = await fetch('https://su-jffu.onrender.com/urls')
+      const req = await fetch('https://supershortneerbackend.vercel.app/urls')
 
       const data = await req.json()
 
@@ -54,7 +53,7 @@ export default {
       console.log(this.url)
       const dataJson = JSON.stringify(this.url)
       console.log(dataJson)
-      const req = await fetch('https://su-jffu.onrender.com/url', {
+      const req = await fetch('https://supershortneerbackend.vercel.app/url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: dataJson

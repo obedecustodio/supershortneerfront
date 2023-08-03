@@ -8,36 +8,25 @@
       <button class="btn btn-primary center" type="submit">Shrink</button>
     </form>
 
-    <table class="table table-striped table-responsive bg-dark">
-      <thead>
-        <tr>
-        <th>Long Url</th>
-        <th>Short Url</th>
-      </tr>
-      </thead>
-      <tbody>
-        <tr v-for="url in urls" :key="url.id">  
-        <td>
-          <a :href=" url.longurl" class="text-primary" target="_blank">{{ url.longurl }}</a>
-        </td>
-        <td>
-          <a :href="'https://supershortneerbackend.vercel.app/url/' + url.shorturl" class="text-success" target="_blank">{{ url.shorturl }}</a>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="alert alert-success">
+      <p v-if="msg">{{ warn }}</p>
+      <p v-else="msg">Your Short Url: <a :href="'https://supershortneerbackend.vercel.app/url/' + shorturl" class="text-success" target="_blank" > {{ shorturl }} </a></p>
+    </div>
+    
   </div>
 </template>
 <script>
-import axios from 'axios';
 export default {
   name: 'UrlShortneer',
   data() {
     return {
-      urls: null,
+      shorturl: null,
+      longurl: null,
       url: {
         long: ''
-      }
+      },
+      warn: 'Your short url will appear here',
+      msg: true
     }
   },
   methods: {
@@ -46,12 +35,16 @@ export default {
 
       const data = await req.json()
 
-      this.urls = data
-
-      console.log(this.url)
+      this.shorturl = data[data.length - 1].shorturl
+      this.longurl = data[data.length - 1].longurl
+      this.msg = false
+      this.warn = ""
     },
     async postUrl(e) {
       e.preventDefault()
+
+      this.msg = true
+      this.warn = 'shortening...'
       console.log(this.url)
       const dataJson = JSON.stringify(this.url)
       console.log(dataJson)
@@ -66,7 +59,7 @@ export default {
     }
   },
   mounted() {
-    this.getUrls()
+    // this.getUrls()
   }
 }
 </script>

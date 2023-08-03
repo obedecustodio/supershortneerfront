@@ -10,7 +10,9 @@
 
     <div class="alert alert-success">
       <p v-if="msg">{{ warn }}</p>
-      <p v-else="msg">Your Short Url: <a :href="'https://supershortneerbackend.vercel.app/url/' + shorturl" class="text-success" target="_blank" > {{ shorturl }} </a></p>
+      <p v-else="msg" class="d-flex justify-content-between"><p>Your short url: <a :href="'https://supershortneerbackend.vercel.app/url/' + shorturl" class="text-success" target="_blank" > {{ shorturl }} </a></p> 
+        <button @click="copy" class="btn btn-primary"><font-awesome-icon icon="fa-solid fa-clone" /></button>
+      </p>
     </div>
     
   </div>
@@ -56,6 +58,17 @@ export default {
 
       this.url.long = '';
       this.getUrls();
+    },
+    copy(){
+      let copyText = `https://supershortneerbackend.vercel.app/url/${this.shorturl}`
+
+      const txta = document.createElement("textarea")
+      txta.value = copyText
+      document.body.appendChild(txta)
+      txta.select()
+      document.execCommand("copy")
+      alert("Text copied to clipboard")
+      document.body.removeChild(txta)
     }
   },
   mounted() {

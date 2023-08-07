@@ -71,7 +71,7 @@ export default {
       document.body.removeChild(txta)
     }
   },
-  mounted() {
+  mounted() {  
     // this.getUrls()
   }
 }

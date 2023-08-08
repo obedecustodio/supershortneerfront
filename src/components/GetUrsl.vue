@@ -4,7 +4,9 @@
     <h1 class="text-secondary text-center">Super Shortneer</h1>
     <form class="my-4 form-inline" @submit="postUrl">
       <label for="url" class="visually-hidden">Url:</label>
+
       <input v-model="url.long" type="url" placeholder="Your Long Url" class="form-control col mr-2 mb-3" required/>
+
       <button class="btn btn-primary center" type="submit">Shrink</button>
     </form>
 

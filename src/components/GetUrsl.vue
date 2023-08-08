@@ -69,7 +69,7 @@ export default {
       document.body.appendChild(txta)
       txta.select()
       document.execCommand("copy")
-      alert("Text copied to clipboard")
+      alert("Short url copied to clipboard")
       document.body.removeChild(txta)
     }
   },
